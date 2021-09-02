@@ -52,6 +52,13 @@ def pretty_format_yaml(argv: typing.Optional[typing.List[str]] = None) -> int:
         dest="preserve_quotes",
         help="Keep existing string quoting",
     )
+    parser.add_argument(
+        "-w",
+        type=int,
+        dest="width",
+        default="80",
+        help="Width limit",
+    )
 
     parser.add_argument("filenames", nargs="*", help="Filenames to fix")
     args = parser.parse_args(argv)
@@ -62,7 +69,7 @@ def pretty_format_yaml(argv: typing.Optional[typing.List[str]] = None) -> int:
     yaml.indent = args.indent
     yaml.preserve_quotes = args.preserve_quotes
     # Prevent ruamel.yaml to wrap yaml lines
-    yaml.width = maxsize  # type: ignore  # mypy recognise yaml.width as None
+    yaml.width = args.width
 
     separator = "---\n"
 
