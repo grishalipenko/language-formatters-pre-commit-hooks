@@ -68,7 +68,6 @@ def pretty_format_yaml(argv: typing.Optional[typing.List[str]] = None) -> int:
     yaml = YAML()
     yaml.indent = args.indent
     yaml.preserve_quotes = args.preserve_quotes
-    # Prevent ruamel.yaml to wrap yaml lines
     yaml.width = args.width
 
     separator = "---\n"
